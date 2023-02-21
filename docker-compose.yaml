@@ -5,6 +5,10 @@ services:
     ports:
       - '8080:8080' # map: local:container
     # restart: always # Restarts the service whenever any defined configuration changes
+    env_file:
+      - .env
+    # environment:
+    #   - SUPER_SECRET_KEY=${SUPER_SECRET_KEY}
     build:
       dockerfile: Dockerfile
       context: .

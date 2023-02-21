@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -13,7 +14,17 @@ func main() {
 }
 
 func healthCheckHandler(c *gin.Context) {
+	var superSecretKey string = os.Getenv("SUPER_SECRET_KEY")
+
+	if superSecretKey == "" {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": "Missing environment variables",
+		})
+		return
+	}
+
 	c.JSON(http.StatusOK, gin.H{
 		"healthy": true,
+		"secret":  superSecretKey,
 	})
 }

@@ -16,3 +16,9 @@
 
 # Air
 tmp
+
+# Environment variables
+.env
+
+# MacOS
+.DS_Store
