@@ -1,0 +1,32 @@
+# Install dependencies and compile to a binary
+FROM golang:1.19-alpine as builder
+
+WORKDIR /app
+
+COPY go.sum go.mod ./
+RUN go mod download
+
+COPY . .
+
+ENV GIN_MODE=release
+# Define the target architecture so it can still be deployed to an x86 machine if compiled on an ARM machine
+ENV GOOS=linux GOARCH=386
+RUN go build -ldflags="-w -s" -o /bin/gin-air-docker-boilerplate .
+
+# Step 2: build a small image that runs the binary
+FROM alpine:3.14
+
+####
+## To ensure the application doesn't run as root, we
+## create a new user and group that it will run as.
+####
+RUN addgroup boilerplate-user && adduser -D -G boilerplate-user boilerplate-user
+
+# copy static executable and change the owner to be the user that will run the application
+COPY --chown=boilerplate-user:boilerplate-user --from=builder /bin/gin-air-docker-boilerplate /bin/gin-air-docker-boilerplate
+
+USER boilerplate-user:boilerplate-user
+
+EXPOSE 8080
+
+CMD ["/bin/gin-air-docker-boilerplate"]

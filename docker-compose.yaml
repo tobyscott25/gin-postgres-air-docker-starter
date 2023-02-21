@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  api:
+    container_name: gin-air-docker-boilerplate
+    ports:
+      - '8080:8080' # map: local:container
+    # restart: always # Restarts the service whenever any defined configuration changes
+    build:
+      dockerfile: Dockerfile
+      context: .
+      target: dev
+    volumes:
+      - .:/app
+    # depends_on:
+    #   - db
