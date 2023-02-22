@@ -26,7 +26,7 @@ Define environment variables for your development environment:
 
 ```bash
 cp .env.example .env
-vim .vim
+vim .env
 ```
 
 Run locally:
