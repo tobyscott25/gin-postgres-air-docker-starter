@@ -10,8 +10,8 @@ COPY . .
 
 ENV GIN_MODE=release
 # Define the target architecture so it can still be deployed to an x86 machine if compiled on an ARM machine
-ENV GOOS=linux GOARCH=386
-RUN go build -ldflags="-w -s" -o /bin/gin-air-docker-boilerplate .
+ENV GOOS=linux GOARCH=amd64
+RUN go build -o /bin/gin-air-docker-boilerplate .
 
 # Step 2: build a small image that runs the binary
 FROM alpine:3.14
