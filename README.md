@@ -39,7 +39,7 @@ docker compose up
 
 ## Production
 
-> Note: Environment variables are never baked into the images. The production environment will start a Docker container based on this image, but it will have to pass the environment variables to the container when it runs it.
+> Note: Environment variables are never baked into the image, or they wouldn't be _environment_ variables. The production environment will start a Docker container based on this image, but it will have to pass the environment variables to the container when it runs it.
 
 ```bash
 # Build Docker image for production:
