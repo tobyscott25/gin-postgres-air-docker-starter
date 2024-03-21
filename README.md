@@ -48,3 +48,7 @@ docker build -t gin-air-docker-boilerplate -f Dockerfile.production .
 # Example manually running a container with environment variables and ports defined:
 docker run -p 8080:8080 -e SUPER_SECRET_KEY=abc123 gin-air-docker-boilerplate
 ```
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=tobyscott25/gin-postgres-air-docker-starter&type=Date)](https://star-history.com/#tobyscott25/gin-postgres-air-docker-starter&Date)
