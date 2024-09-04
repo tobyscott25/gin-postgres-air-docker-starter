@@ -22,3 +22,6 @@ tmp
 
 # MacOS
 .DS_Store
+
+# Compiled binary
+gin-air-docker-boilerplate
