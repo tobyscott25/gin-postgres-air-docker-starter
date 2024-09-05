@@ -1,30 +1,28 @@
 package main
 
 import (
-	"net/http"
-	"os"
+	"fmt"
+	"log"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
+	"github.com/tobyscott25/gin-air-docker-boilerplate/src/config"
+	"github.com/tobyscott25/gin-air-docker-boilerplate/src/controller"
+	"github.com/tobyscott25/gin-air-docker-boilerplate/src/di"
 )
 
 func main() {
-	router := gin.Default()
-	router.GET("/", healthCheckHandler)
-	router.Run(":8080")
-}
+	config := config.Load()
 
-func healthCheckHandler(c *gin.Context) {
-	var superSecretKey string = os.Getenv("SUPER_SECRET_KEY")
-
-	if superSecretKey == "" {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": "Missing environment variables",
-		})
-		return
+	dependencies, err := di.InitDependencies(config)
+	if err != nil {
+		log.Fatal(err.Error())
 	}
 
-	c.JSON(http.StatusOK, gin.H{
-		"healthy": true,
-		"secret":  superSecretKey,
-	})
+	router := gin.Default()
+
+	controller.InitialiseAppRouter(router, dependencies)
+
+	portStr := strconv.Itoa(int(config.Port))
+	router.Run(fmt.Sprintf(":%s", portStr))
 }

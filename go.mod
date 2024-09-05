@@ -2,7 +2,10 @@ module github.com/tobyscott25/gin-air-docker-boilerplate
 
 go 1.19
 
-require github.com/gin-gonic/gin v1.9.1
+require (
+	github.com/gin-gonic/gin v1.9.1
+	github.com/kelseyhightower/envconfig v1.4.0
+)
 
 require (
 	github.com/bytedance/sonic v1.9.1 // indirect

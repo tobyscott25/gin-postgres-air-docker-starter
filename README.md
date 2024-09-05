@@ -1,12 +1,13 @@
 # Project boilerplate: Go + Gin + Docker + Air
+
 A containerised [Gin](https://github.com/gin-gonic/gin) app boilerplate, with a containerised development environment using Air and Docker Compose.
 
-| Component         | Choice                                   |
-| ----------------- | ---------------------------------------- |
-| Language          | [Go](https://go.dev/)                    |
-| Framework         | [Gin](https://github.com/gin-gonic/gin)  |
-| Hot Reloading     | [Air](https://github.com/cosmtrek/air)   |
-| Containerisation  | [Docker](https://www.docker.com/)        |
+| Component        | Choice                                  |
+| ---------------- | --------------------------------------- |
+| Language         | [Go](https://go.dev/)                   |
+| Framework        | [Gin](https://github.com/gin-gonic/gin) |
+| Hot Reloading    | [Air](https://github.com/cosmtrek/air)  |
+| Containerisation | [Docker](https://www.docker.com/)       |
 
 ## Development
 
@@ -16,7 +17,6 @@ Install the dependancies:
 
 ```bash
 go mod download
-go mod vendor
 go mod verify
 ```
 
